@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<body><br><br><br>
+    
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <form action="{% url 'app12:update' user.id %}" method="POST">
+        {% csrf_token %}
+        <div style="margin-left: 500px; margin-bottom: 40px;" >
+        <table>
+            <tr><td>{{ form.as_table }}</td></tr>
+
+            <tr><td><img src="{{ user.Photo.url }}" alt="nooo" style="max-width: 100px;max-height: 50px;"></td></tr>
+        </table>
+        <input type="submit" value="Update" style="margin-left: 200px; margin-bottom: 80px;">
+    </form>
+    </div>
+</body>    
+{% endblock %}
